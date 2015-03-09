@@ -1,0 +1,40 @@
+{
+  "name": "kakku",
+  "version": "0.0.0",
+  "description": "A backend-agnostic cache layer",
+  "author": "Jussi Kalliokoski <jussi.kalliokoski@gmail.com> (http://juss.in)",
+  "license": "ISC",
+  "keywords": [
+    "cache",
+    "promise",
+    "ttl",
+    "stale"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jussi-kalliokoski/kakku.git"
+  },
+  "main": "index.js",
+  "files": [
+    "dist/lib",
+    "index.js"
+  ],
+  "scripts": {
+    "coveralls": "cat ./dist/coverage/lcov.info | COVERALLS_SERVICE_NAME=\"travis-ci\" coveralls",
+    "prepublish": "./scripts/build.sh",
+    "test": "./scripts/test.sh"
+  },
+  "devDependencies": {
+    "babel": "^4.6.6",
+    "chai": "^1.9.2",
+    "coveralls": "^2.11.2",
+    "es6-collections": "^0.5.1",
+    "es6-promise": "^2.0.1",
+    "istanbul": "^0.3.7",
+    "mocha": "^1.21.4",
+    "rewire": "^2.1.0",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.6.0",
+    "source-map-support": "^0.2.9"
+  }
+}
