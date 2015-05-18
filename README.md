@@ -39,6 +39,10 @@ Registers a new cache by name.
 ###### Options
 
 * `name` The name of the cache.
+* `store` Allows overwriting the default store of the Kakku instance on a per-cache basis.
+* `collapseGets` Allows overwriting the default get mode of the Kakku instance on a per-cache basis.
+* `collapseFetches` Allows overwriting the default fetch mode of the Kakku instance on a per-cache basis.
+* `useAfterStale` Allows overwriting the default stale cache behavior of the Kakku instance on a per-cache basis.
 * `implementation` The method to call to calculate the value of the cache. Is given the cache parameters and should return a promise of an object with the following keys:
   - `data` The result of the calculation.
   - `ttl` The [TTL](http://en.wikipedia.org/wiki/Time_to_live) of the result, in milliseconds.
@@ -131,7 +135,7 @@ The events have the following properties:
 * `cacheName` The name of the cache.
 * `cacheKey` The key used for the operation.
 * `cacheParameters` The parameters used for the operation.
-* `time` The time the operation took. In high-resolution time. Not availabled on the `{{operation name}}_started` 
+* `time` The time the operation took. In high-resolution time. Not availabled on the `{{operation name}}_started`
 
 #####
 
