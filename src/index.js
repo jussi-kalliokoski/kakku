@@ -29,15 +29,22 @@ class Kakku extends EventEmitter {
         this.caches = new Map();
     }
 
-    register ({ name, implementation, useAfterStale, collapseFetches, collapseGets }) {
+    register ({
+        name,
+        implementation,
+        useAfterStale,
+        collapseFetches,
+        collapseGets,
+        store,
+    }) {
         const cache = new Cache({
             prefix: this.prefix,
-            store: this.store,
             name: name,
             implementation: implementation,
             useAfterStale: defaultValue(useAfterStale).to(this.useAfterStale),
             collapseFetches: defaultValue(collapseFetches).to(this.collapseFetches),
             collapseGets: defaultValue(collapseGets).to(this.collapseGets),
+            store: defaultValue(store).to(this.store),
             onEvent: (eventName, event) => { this.emit(eventName, event); },
         });
 

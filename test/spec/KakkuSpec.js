@@ -11,6 +11,7 @@ describe("Kakku", function () {
     const DEFAULT_VALUE = { meow: "dog" };
     const MOCK_STORE_NAME = "MockStore";
     var mockStore;
+    var secondaryMockStore;
     var implementation;
     var kakku;
     var result;
@@ -617,5 +618,31 @@ describe("Kakku", function () {
         itShouldEmitMiss();
         itShouldNotEmit("hit");
         itShouldNotEmit("error");
+    });
+
+    describe("when the cache overrides the default store", function () {
+        setupStore();
+        setupKakku();
+
+        beforeEach(function () {
+            implementation = sinon.spy(defaultImplementation);
+            secondaryMockStore = new MockStore(createEmptyData());
+            kakku.register({
+                name: DEFAULT_CACHE_NAME,
+                implementation: implementation,
+                store: secondaryMockStore,
+            });
+        });
+
+        fetchDefaultFromCache();
+        wait();
+
+        it("should not use the default store", function () {
+            mockStore.get.should.not.have.been.called;
+        });
+
+        it("should use the secondary store", function () {
+            secondaryMockStore.get.should.have.been.calledOnce;
+        });
     });
 });
